@@ -45,6 +45,8 @@ imports:
   - devenv-systemd-run
 ```
 
+See also the `example/` directory.
+
 #### Flakes
 
 Add this repo to your Flake inputs:
