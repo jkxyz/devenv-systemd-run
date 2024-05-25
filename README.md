@@ -2,6 +2,8 @@
 
 Launch [devenv](https://devenv.sh/) processes as transient systemd user units using `systemd-run`.
 
+**STATUS**: Very alpha
+
 ## Motivation
 
 With many development process managers such as Foreman and Process Compose, I too often find myself having to do manual cleanup after unexpected failures (like `pkill -f postgres`).
