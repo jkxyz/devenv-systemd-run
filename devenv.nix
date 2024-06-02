@@ -1,6 +1,8 @@
 { pkgs, lib, config, ... }:
 
 let
+  cfg = config.systemd-run;
+
   commands = lib.mapAttrsToList (name: process:
     (builtins.concatStringsSep " " [
       "systemd-run"
@@ -21,16 +23,6 @@ let
 in {
   options = {
     systemd-run = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-      };
-
-      useAsProcessManager = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-      };
-
       projectName = lib.mkOption {
         type = lib.types.str;
 
@@ -47,11 +39,5 @@ in {
     };
   };
 
-  config = lib.mkMerge [
-    (lib.mkIf config.systemd-run.enable { packages = [ devenv-systemd-run ]; })
-
-    (lib.mkIf config.systemd-run.useAsProcessManager {
-      processManagerCommand = lib.mkForce "devenv-systemd-run";
-    })
-  ];
+  config = { packages = [ devenv-systemd-run ]; };
 }
